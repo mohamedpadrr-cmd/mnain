@@ -7,47 +7,45 @@
 body, html {
     margin: 0; padding: 0; height: 100%;
     background: var(--dark-bg);
-    color: white; font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: white; font-family: 'Segoe UI', Arial, sans-serif;
     overflow: hidden;
 }
 
 .main-screen {
     height: 100vh;
-    background: url('kaaba-bg.jpg') center/cover; /* ضع صورة الكعبة هنا */
-    background-blend-mode: overlay;
-    background-color: rgba(0,0,0,0.7);
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('kaaba-bg.jpg') center/cover;
     display: flex; flex-direction: column; align-items: center; justify-content: space-around;
 }
 
-.header-section h1 { font-size: 8rem; color: var(--gold); margin: 0; text-shadow: 0 0 20px rgba(255,204,0,0.5); }
-.header-section p { font-size: 2rem; color: #ccc; margin-top: -10px; }
+.header-section { text-align: center; }
+.header-section h1 { font-size: 10rem; color: var(--gold); margin: 0; line-height: 1; text-shadow: 0 0 30px rgba(255,204,0,0.4); }
+.ampm-text { font-size: 2.5rem; color: var(--gold); font-weight: bold; margin-bottom: 10px; }
+.header-section p { font-size: 2.5rem; color: #ccc; margin: 0; }
 
-.next-prayer-label { color: var(--active-green); font-size: 2rem; font-weight: bold; }
+.next-prayer-label { color: var(--active-green); font-size: 2.2rem; font-weight: bold; }
 
-.hex-grid {
-    display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; width: 90%;
-}
+.hex-grid { display: flex; justify-content: center; gap: 15px; width: 95%; direction: ltr; }
 
 .hex-item {
-    width: 160px; height: 180px;
+    width: 180px; height: 200px;
     background: #1a252f;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex; align-items: center; justify-content: center;
-    border: 2px solid #34495e;
+    border: 2px solid #34495e; transition: 0.3s;
 }
 
-.hex-content { text-align: center; }
-.hex-content span { font-size: 1.2rem; color: #bdc3c7; }
-.hex-content p { font-size: 2.2rem; font-weight: bold; margin: 5px 0; }
+.hex-content { text-align: center; direction: rtl; }
+.hex-content span { font-size: 1.5rem; color: #bdc3c7; }
+.hex-content p { font-size: 2.8rem; font-weight: bold; margin: 5px 0; }
 
 .hex-item.active {
     background: #0a2d1a;
     border: 4px solid var(--active-green);
     box-shadow: 0 0 50px rgba(0, 255, 68, 0.4);
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 .ticker-wrapper {
     width: 100%; background: #800000; padding: 15px 0;
-    font-size: 1.8rem; border-top: 3px solid white;
+    font-size: 2rem; border-top: 3px solid white;
 }
