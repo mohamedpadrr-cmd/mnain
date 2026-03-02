@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شاشة المسجد الاحترافية</title>
+    <title>شاشة المسجد الاحترافية - Smart Mosque</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main-screen">
-        <div class="header-section">
-            <h1 id="clock">00:00:00</h1>
-            <div id="ampm" class="ampm-text">--</div>
-            <p id="date-info">جاري تحميل التاريخ...</p>
-        </div>
+        <div class="overlay"></div>
+        
+        <div class="content-wrapper">
+            <!-- قسم الوقت والتاريخ -->
+            <div class="header-section">
+                <div class="time-container">
+                    <h1 id="clock">00:00:00</h1>
+                    <span id="ampm">--</span>
+                </div>
+                <p id="date-info">تحميل التاريخ...</p>
+            </div>
 
-        <div class="next-prayer-label">الصلاة القادمة</div>
+            <div class="next-prayer-label">الصلاة القادمة</div>
 
-        <div class="hex-grid">
-            <div class="hex-item" id="isha"><div class="hex-content"><span>العشاء</span><p>19:14</p></div></div>
-            <div class="hex-item" id="maghrib"><div class="hex-content"><span>المغرب</span><p>17:44</p></div></div>
-            <div class="hex-item active" id="asr"><div class="hex-content"><span>العصر</span><p>15:37</p></div></div>
-            <div class="hex-item" id="dhuhr"><div class="hex-content"><span>الظهر</span><p>12:21</p></div></div>
-            <div class="hex-item" id="sunrise"><div class="hex-content"><span>الشروق</span><p>06:58</p></div></div>
-            <div class="hex-item" id="fajr"><div class="hex-content"><span>الفجر</span><p>05:31</p></div></div>
-        </div>
+            <!-- شبكة الصلوات السداسية -->
+            <div class="hex-grid">
+                <div class="hex-item" id="isha"><div class="hex-content"><span>العشاء</span><p>19:14</p></div></div>
+                <div class="hex-item" id="maghrib"><div class="hex-content"><span>المغرب</span><p>17:44</p></div></div>
+                <div class="hex-item active" id="asr"><div class="hex-content"><span>العصر</span><p>15:37</p></div></div>
+                <div class="hex-item" id="dhuhr"><div class="hex-content"><span>الظهر</span><p>12:21</p></div></div>
+                <div class="hex-item" id="sunrise"><div class="hex-content"><span>الشروق</span><p>06:58</p></div></div>
+                <div class="hex-item" id="fajr"><div class="hex-content"><span>الفجر</span><p>05:31</p></div></div>
+            </div>
 
-        <div class="ticker-wrapper">
-            <marquee direction="right" scrollamount="8">
-                • سبحان الله وبحمده، سبحان الله العظيم • يرجى إغلاق الهواتف المحمولة • أقم صلاتك قبل مماتك
-            </marquee>
+            <!-- شريط الأذكار -->
+            <div class="ticker-wrapper">
+                <marquee direction="right" scrollamount="10">
+                    • سبحان الله وبحمده، سبحان الله العظيم • يرجى إغلاق الهواتف المحمولة • أقم صلاتك قبل مماتك •
+                </marquee>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
