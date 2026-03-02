@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شاشة المسجد الاحترافية - Smart Mosque</title>
+    <title>شاشة المسجد الاحترافية</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main-screen">
         <div class="overlay"></div>
-        
         <div class="content-wrapper">
-            <!-- قسم الوقت والتاريخ -->
             <div class="header-section">
+                <!-- اليوم والوقت -->
+                <div id="day-name" class="day-label">جاري التحميل...</div>
                 <div class="time-container">
                     <h1 id="clock">00:00:00</h1>
                     <span id="ampm">--</span>
                 </div>
-                <p id="date-info">تحميل التاريخ...</p>
+                <!-- التاريخ الهجري والميلادي -->
+                <div id="date-info" class="date-display">جاري تحميل التاريخ...</div>
             </div>
 
             <div class="next-prayer-label">الصلاة القادمة</div>
 
-            <!-- شبكة الصلوات السداسية -->
             <div class="hex-grid">
                 <div class="hex-item" id="isha"><div class="hex-content"><span>العشاء</span><p>19:14</p></div></div>
                 <div class="hex-item" id="maghrib"><div class="hex-content"><span>المغرب</span><p>17:44</p></div></div>
@@ -32,7 +32,6 @@
                 <div class="hex-item" id="fajr"><div class="hex-content"><span>الفجر</span><p>05:31</p></div></div>
             </div>
 
-            <!-- شريط الأذكار -->
             <div class="ticker-wrapper">
                 <marquee direction="right" scrollamount="10">
                     • سبحان الله وبحمده، سبحان الله العظيم • يرجى إغلاق الهواتف المحمولة • أقم صلاتك قبل مماتك •
