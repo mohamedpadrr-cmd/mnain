@@ -1,26 +1,27 @@
 function updateClockAndDate() {
     const now = new Date();
 
-    // 1. عرض اليوم باللغة العربية
+    // 1. عرض اسم اليوم
     const dayName = now.toLocaleDateString('ar-SA', { weekday: 'long' });
     document.getElementById('day-name').innerText = dayName;
 
-    // 2. نظام الوقت 12 ساعة
-    let h = now.getHours();
-    let m = now.getMinutes();
-    let s = now.getSeconds();
-    const ampmText = h >= 12 ? 'مساءً' : 'صباحاً';
+    // 2. الوقت الرئيسي بنظام 12 ساعة مع (صباحاً/مساءً)
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    const ampmText = hours >= 12 ? 'مساءً' : 'صباحاً';
     
-    let displayH = h % 12 || 12;
+    hours = hours % 12 || 12; // تحويل الساعة 0 إلى 12
+    
     const formattedTime = 
-        (displayH < 10 ? '0' + displayH : displayH) + ":" + 
-        (m < 10 ? '0' + m : m) + ":" + 
-        (s < 10 ? '0' + s : s);
+        (hours < 10 ? '0' + hours : hours) + ":" + 
+        (minutes < 10 ? '0' + minutes : minutes) + ":" + 
+        (seconds < 10 ? '0' + seconds : seconds);
 
     document.getElementById('clock').innerText = formattedTime;
     document.getElementById('ampm').innerText = ampmText;
 
-    // 3. عرض التاريخ الهجري والميلادي (تم فصلهما بدقة)
+    // 3. التاريخ الهجري (أم القرى) والميلادي - تم الفصل بينهما هنا
     const hijriDate = now.toLocaleDateString('ar-SA-u-ca-islamic-umalqura', {
         day: 'numeric', month: 'long', year: 'numeric'
     });
@@ -32,13 +33,11 @@ function updateClockAndDate() {
     document.getElementById('date-info').innerText = `${hijriDate} هـ | ${miladiDate} م`;
 
     // 4. التحديد التلقائي للصلاة القادمة
-    autoHighlightNextPrayer(h, m);
+    autoHighlight(now.getHours(), now.getMinutes());
 }
 
-function autoHighlightNextPrayer(currentH, currentM) {
-    const currentTimeInMinutes = currentH * 60 + currentM;
-    
-    // مواقيت الصلاة (يمكنك تحديثها يدوياً أو ربطها بـ API)
+function autoHighlight(h, m) {
+    const current = h * 60 + m;
     const prayers = [
         { id: 'fajr', time: '05:31' },
         { id: 'sunrise', time: '06:58' },
@@ -48,27 +47,20 @@ function autoHighlightNextPrayer(currentH, currentM) {
         { id: 'isha', time: '19:14' }
     ];
 
-    let nextPrayerId = 'fajr'; // افتراضياً صلاة الفجر لليوم التالي
-
-    for (let prayer of prayers) {
-        const [ph, pm] = prayer.time.split(':').map(Number);
-        const prayerMinutes = ph * 60 + pm;
-        
-        if (prayerMinutes > currentTimeInMinutes) {
-            nextPrayerId = prayer.id;
+    let nextId = 'fajr';
+    for (let p of prayers) {
+        const [ph, pm] = p.time.split(':').map(Number);
+        if ((ph * 60 + pm) > current) {
+            nextId = p.id;
             break;
         }
     }
 
-    // تطبيق التوهج على الصلاة المختارة فقط
-    document.querySelectorAll('.hex-item').forEach(item => {
-        item.classList.remove('active');
-        if (item.id === nextPrayerId) {
-            item.classList.add('active');
-        }
+    document.querySelectorAll('.hex-item').forEach(el => {
+        el.classList.remove('active');
+        if (el.id === nextId) el.classList.add('active');
     });
 }
 
-// التشغيل الفوري والتكرار كل ثانية
 updateClockAndDate();
 setInterval(updateClockAndDate, 1000);
